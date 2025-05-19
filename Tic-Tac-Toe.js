@@ -1,26 +1,39 @@
-const player1 = "X"
-const player2 = "O"
-const currentPlayer = player1
-switch (currentPlayer) {
-    case player1:
+const prompt = require('prompt-sync')(); // checks if prompt sync is installed
 
-    case player2:
 
-} 
+let boardgrid = ["", "", "", "", "", "", "", "", ""];
+let currentPlayer = "X";
+// Creates the grid with a UI to show the game board
+function boardGridGenerator() {
+    console.clear();
+    for (let i = 0; i < 9; i += 3) {
+        console.log(" ---  ---  ---");
+        console.log("( " + (boardgrid[i] || ' ') + " )( " + (boardgrid[i + 1] || ' ') + " )( " + (boardgrid[i + 2] || ' ') + " )");
+    }
+    console.log(" ---  ---  ---");
+}
 
-const board = 
-[" ", " ", " ", 
- " ", " ", " ", 
- " ", " ", " "];
-console.log(`
-It is ${currentPlayer}'s turn
- ___ ___ ___
-| ${board[0]} | ${board[1]} | ${board[2]} |
-| ${board[3]} | ${board[4]} | ${board[5]} |
-| ${board[6]} | ${board[6]} | ${board[8]} |
- ___ ___ ___
-    `) // The back ticks define the string
-// const playerTurn 
+// Change Between players
+function playerSwitcher() {
+    currentPlayer = currentPlayer === "X" ? "O" : "X";
+}
 
-// const gameState = for()
-const playerTurn =  
+
+// Check if one of the players have chosen thier symbol to go in a specific pattern in these 3 numbers on the array
+function playerWin() {
+    const winPatterns = [
+        [0, 1, 2], // Top Horizontal
+        [3, 4, 5], // Middle Horizontal
+        [6, 7, 8], // Bottom Horizontal
+        [0, 3, 6], // Left Vertical
+        [1, 4, 7], // Center Vertical
+        [2, 5, 8], // Right Vertical
+        [0, 4, 8], // Top to Bottom Diagonal
+        [2, 4, 6]  // Bottom to Top Diagonal     
+    ];
+    return winPatterns.some(pattern => 
+        boardgrid[pattern[0]] === currentPlayer &&
+        boardgrid[pattern[1]] === currentPlayer &&
+        boardgrid[pattern[2]] === currentPlayer
+    );
+}
