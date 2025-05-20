@@ -55,7 +55,7 @@ function gameLoop() {
         const index = parseInt(move) - 1; // The number the player has to put is has to be subtracted by one because javascript arrays start at 0 instead of 1
         // If a player puts nothing in it will be classed as a null and still ask again
         if (index < 0 || index > 8 || isNaN(index)) {
-            console.log("Incorrect input. Please Choose a number between 1 and 9.");
+            console.log("Incorrect number. Please Choose a number between 1 and 9.");
             prompt("Press Enter to try again..."); // prints this if the player gives a number above or below 9 or 1 or nothing. 
             // Like if I put 10 it would ask to choose another number
             continue;
