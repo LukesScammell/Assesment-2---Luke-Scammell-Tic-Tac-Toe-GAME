@@ -39,9 +39,9 @@ function playerWin() {
     ); // This is an example of a ground of indexes which would award the player who made this pattern first win
 }
 
-// Check for a draw
+// Check If the players tied
 function tieChecker() {
-    return boardgrid.every(cell => cell !== "");
+    return boardgrid.every(cell => cell !== ""); //checks if all of the cells are filled
 }
 
 // Main game loop
